@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var router = express.Router(); 
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 // routes
 var ROOMS_DETAIL = '/rooms/:room_id';
@@ -84,6 +85,7 @@ router.route(MESSAGES_LIST)
 
 app.set('port', (process.env.PORT || 5000));
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', router);
