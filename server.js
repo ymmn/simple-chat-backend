@@ -28,7 +28,17 @@ router.route(ROOMS_DETAIL)
   .get(function (req, res) {
     var roomId = req.params.room_id;
     if (rooms[roomId]) {
-      res.send(rooms[roomId])
+      var room = rooms[roomId];
+      var userNames = new Set()
+      room.messages.forEach(function(msg) { 
+        userNames.add(msg.name);
+      });
+
+      res.send({
+        id: room.id,
+        name: room.name,
+        users: Array.from(userNames),
+      })
     }
 
     res.send('Room not found', 404);
@@ -36,7 +46,13 @@ router.route(ROOMS_DETAIL)
 
 router.route(ROOMS_LIST)
   .get(function (req, res) {
-    res.send(rooms);
+    var resp = rooms.map(function(room) { 
+      return {
+        id: room.id,
+        name: room.name,
+      };
+    });
+    res.send(resp);
   });
 
 router.route(MESSAGES_LIST)
