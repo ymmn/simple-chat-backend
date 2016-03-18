@@ -66,11 +66,13 @@ router.route(MESSAGES_LIST)
   });
 
 
+app.set('port', (process.env.PORT || 5000));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', router);
 
 
-app.listen(8080, function () {
-  console.log('Chat app listening on port 8080!');
+app.listen(app.get('port'), function () {
+  console.log('Chat app listening on port!' + app.get('port'));
 });
