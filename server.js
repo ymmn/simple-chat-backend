@@ -14,10 +14,20 @@ var MESSAGES_LIST = '/rooms/:room_id/messages';
 var rooms = [
   {
     id: 0,
-    name: 'The Cool Chats',
+    name: 'The Tea Chats',
     messages: [
       {
         name: "Abdul",
+        message: "ayyyy",
+      }
+    ],
+  },
+  {
+    id: 1,
+    name: 'The Coffee Chats',
+    messages: [
+      {
+        name: "Ryan",
         message: "ayyyy",
       }
     ],
